@@ -81,7 +81,8 @@ export default function Reservas() {
   };
 
   const formatearFecha = (fecha: string) => {
-    return new Date(fecha).toLocaleDateString('es-CR', {
+    const fechaObj = new Date(fecha);
+    return fechaObj.toLocaleDateString('es-CR', {
       day: '2-digit',
       month: 'short',
       year: 'numeric',

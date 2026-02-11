@@ -289,8 +289,8 @@ export default function TablaDeReservas() {
                                 {reservas.map((r) => {
                                     const isEditing = editingId === r.id;
                                     const fechaObj = new Date(r.fechaHoraServicio);
-                                    const fecha = fechaObj.toLocaleDateString();
-                                    const hora = fechaObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                    const fecha = fechaObj.toLocaleDateString('es-CR', { timeZone: 'America/Costa_Rica' });
+                                    const hora = fechaObj.toLocaleTimeString('es-CR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Costa_Rica' });
 
                                     return (
                                         <tr key={r.id} className="hover:bg-gray-50">
