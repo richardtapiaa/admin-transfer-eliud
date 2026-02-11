@@ -29,7 +29,6 @@ export default function Navbar({ externalSidebarOpen, setExternalSidebarOpen }: 
   const setSidebarOpen = setExternalSidebarOpen || setLocalSidebarOpen;
 
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [busquedaAbierta, setBusquedaAbierta] = useState(false);
   const [terminoBusqueda, setTerminoBusqueda] = useState('');
 
