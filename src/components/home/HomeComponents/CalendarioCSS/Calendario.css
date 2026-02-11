@@ -1,0 +1,110 @@
+.calendario-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.calendario-container .fc {
+  font-family: inherit;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.calendario-container .fc-button {
+  background-color: #8BC34A !important;
+  border-color: #8BC34A !important;
+  padding: 0.375rem 0.75rem !important;
+  font-weight: 500 !important;
+  font-size: clamp(0.75rem, 2vw, 0.875rem) !important;
+}
+
+.calendario-container .fc-button:hover {
+  background-color: #7CB342 !important;
+}
+
+.calendario-container .fc-button-active {
+  background-color: #689F38 !important;
+}
+
+.calendario-container .fc-toolbar-title {
+  font-size: clamp(1rem, 3vw, 1.5rem) !important;   
+  font-weight: 600 !important;
+}
+
+.calendario-container .fc-event {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 1px 3px;
+  font-size: clamp(0.65rem, 2vw, 0.8rem);
+  overflow: hidden;
+}
+
+.calendario-container .fc-event:hover {
+  opacity: 0.9;
+}
+
+.calendario-container .fc-event-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendario-container .fc-timegrid-slot {
+  height: 2.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .calendario-container .fc-timegrid-slot {
+    height: 3rem !important;
+  }
+}
+
+.calendario-container .fc-col-header-cell {
+  padding: 0.5rem 0 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: clamp(0.65rem, 2vw, 0.75rem) !important;
+  color: #4b5563 !important;
+}
+
+.calendario-container .fc-timegrid-slot-label {
+  font-size: clamp(0.65rem, 2vw, 0.75rem) !important;
+  padding: 0 4px !important;
+}
+
+.calendario-container .fc-daygrid-day-number {
+  font-size: clamp(0.75rem, 2vw, 0.875rem) !important;
+  padding: 4px !important;
+}
+
+@media (max-width: 767px) {
+  .calendario-container .fc-toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .calendario-container .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .calendario-container .fc-timegrid-axis {
+    width: 40px !important;
+  }
+  
+  .calendario-container .fc-scrollgrid {
+    border-width: 1px !important;
+  }
+}
+
+.calendario-container .fc-scroller {
+  -webkit-overflow-scrolling: touch;
+}
