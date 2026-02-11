@@ -109,6 +109,7 @@ export default function Notificaciones() {
       month: 'short',
       hour: '2-digit',
       minute: '2-digit',
+      timeZone: 'America/Costa_Rica'
     });
   };
 

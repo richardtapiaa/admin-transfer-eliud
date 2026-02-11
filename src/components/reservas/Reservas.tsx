@@ -59,9 +59,6 @@ export default function Reservas() {
         
         if (estadoFiltro) {
           params.append('estado', estadoFiltro);
-        } else if (!buscarFiltro) {
-         
-          params.append('estado', 'PENDIENTE');
         }
         
         const queryString = params.toString();
@@ -91,19 +88,6 @@ export default function Reservas() {
     });
   };
 
-  const obtenerColorEstado = (estado: string) => {
-    switch (estado) {
-      case 'CONFIRMADA':
-        return 'bg-green-50 text-green-700 border-green-200';
-      case 'RECHAZADA':
-        return 'bg-red-50 text-red-700 border-red-200';
-      case 'PENDIENTE':
-        return 'bg-yellow-50 text-yellow-700 border-yellow-200';
-      default:
-        return 'bg-gray-50 text-gray-700 border-gray-200';
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#8BC34A]/19 flex flex-col">
       <Navbar />
@@ -117,9 +101,7 @@ export default function Reservas() {
                   ? `Reservas Encontradas`
                   : searchParams.get('id')
                   ? 'Detalle de Reserva'
-                  : estadoFiltro
-                    ? `Reservas ${estadoFiltro === 'CONFIRMADA' ? 'Confirmadas' : 'Rechazadas'}`
-                    : 'Reservas Pendientes'}
+                  : 'Reservas'}
               </h1>
             </div>
             <p className="text-gray-500 ml-7 text-sm">
@@ -142,7 +124,7 @@ export default function Reservas() {
               <div className="flex justify-center mb-4">
                 <CalendarDaysIcon className="w-20 h-20 text-gray-300" />
               </div>
-              <p className="text-gray-500 text-lg font-medium">No hay reservas {estadoFiltro ? estadoFiltro.toLowerCase() + 's' : ''}</p>
+              <p className="text-gray-500 text-lg font-medium">No hay reservas</p>
               <p className="text-gray-400 text-sm mt-2">Las nuevas reservas aparecerán aquí</p>
             </div>
           ) : (
@@ -159,9 +141,6 @@ export default function Reservas() {
                     <h3 className="font-bold text-xl text-gray-900">
                       {reserva.nombre}
                     </h3>
-                    <span className={`px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm border ${obtenerColorEstado(reserva.estado)}`}>
-                      {reserva.estado}
-                    </span>
                   </div>
 
                   <div className="space-y-3 text-sm">
