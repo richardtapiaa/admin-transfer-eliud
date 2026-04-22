@@ -4,6 +4,18 @@ import axios from '../api/axios'
 
 export async function requestNotificationPermission() {
   try {
+    // Verificar soporte de notificaciones
+    if (!('Notification' in window)) {
+      console.error('Este navegador no soporta notificaciones')
+      return
+    }
+
+    // Verificar soporte de service workers
+    if (!('serviceWorker' in navigator)) {
+      console.error('Este navegador no soporta service workers')
+      return
+    }
+
     const permission = await Notification.requestPermission()
 
     if (permission !== 'granted') {
@@ -11,11 +23,25 @@ export async function requestNotificationPermission() {
       return
     }
 
-    // Firebase Messaging registra automáticamente el service worker
-    // No pasar serviceWorkerRegistration para evitar conflictos
+    console.log('✅ Permiso de notificaciones concedido')
+
+    // Registrar el service worker específicamente para Firebase
+    const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+      scope: '/'
+    })
+
+    console.log('✅ Service Worker registrado:', registration.scope)
+
+    // Esperar a que esté activo
+    await navigator.serviceWorker.ready
+
+    // Generar token con el service worker específico
     const token = await getToken(messaging, {
       vapidKey: vapidKey,
+      serviceWorkerRegistration: registration,
     })
+
+    console.log('✅ Token FCM generado')
 
     if (!token) {
       return
