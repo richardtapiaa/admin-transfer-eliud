@@ -7,15 +7,14 @@ export async function requestNotificationPermission() {
     const permission = await Notification.requestPermission()
 
     if (permission !== 'granted') {
+      console.log('Permiso de notificaciones denegado')
       return
     }
 
-    // Esperar a que el service worker esté listo
-    const registration = await navigator.serviceWorker.ready
-
+    // Firebase Messaging registra automáticamente el service worker
+    // No pasar serviceWorkerRegistration para evitar conflictos
     const token = await getToken(messaging, {
       vapidKey: vapidKey,
-      serviceWorkerRegistration: registration,
     })
 
     if (!token) {
