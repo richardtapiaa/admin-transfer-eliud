@@ -1,5 +1,8 @@
+// Version 2.0.0 - Force update
 importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js')
 importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js')
+
+console.log(' Firebase Messaging SW v2.0.0 - Iniciando...')
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDobXWahJlUcgsBCkskQNOTkr70r7f4Fk8',
@@ -11,12 +14,13 @@ firebase.initializeApp({
   measurementId: 'G-H4E0Y23XQF',
 })
 
+console.log(' Firebase inicializado en SW')
 
 const messaging = firebase.messaging()
 
-
+// Escuchar mensajes en segundo plano
 messaging.onBackgroundMessage(function (payload) {
-  console.log(' [Service Worker] Notificación recibida en segundo plano:', payload)
+  console.log(' [SW v2.0.0] Notificación recibida en segundo plano:', payload)
 
   const notificationTitle = payload.notification?.title || 'Transporte Eliud'
   const notificationOptions = {
@@ -40,6 +44,8 @@ messaging.onBackgroundMessage(function (payload) {
       }
     ]
   }
+
+  console.log(' Mostrando notificación:', notificationTitle, notificationOptions)
 
   return self.registration.showNotification(notificationTitle, notificationOptions)
 })

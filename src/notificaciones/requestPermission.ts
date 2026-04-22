@@ -25,9 +25,19 @@ export async function requestNotificationPermission() {
 
     console.log('✅ Permiso de notificaciones concedido')
 
+    // Desregistrar todos los service workers anteriores
+    const registrations = await navigator.serviceWorker.getRegistrations()
+    for (const reg of registrations) {
+      console.log('🔄 Desregistrando SW antiguo:', reg.scope)
+      await reg.unregister()
+    }
+
+    console.log('🔥 Registrando nuevo service worker...')
+
     // Registrar el service worker específicamente para Firebase
     const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-      scope: '/'
+      scope: '/',
+      updateViaCache: 'none' // No cachear el service worker
     })
 
     console.log('✅ Service Worker registrado:', registration.scope)
