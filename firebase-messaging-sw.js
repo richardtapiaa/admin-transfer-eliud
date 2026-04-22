@@ -14,15 +14,15 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging()
 
-// Manejar notificaciones cuando la app está en segundo plano o cerrada
+
 messaging.onBackgroundMessage(function (payload) {
   console.log(' [Service Worker] Notificación recibida en segundo plano:', payload)
 
   const notificationTitle = payload.notification?.title || 'Transporte Eliud'
   const notificationOptions = {
     body: payload.notification?.body || 'Nueva notificación',
-    icon: '/icon-192.png',
-    badge: '/icon-192.png',
+    icon: '/pwa-192x192.png',
+    badge: '/pwa-192x192.png',
     tag: 'transporte-eliud-notification',
     requireInteraction: true, 
     data: {
